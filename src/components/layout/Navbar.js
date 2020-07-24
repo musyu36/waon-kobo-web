@@ -12,9 +12,9 @@ const Navbar = (props) => {
     <SignedOutLinks />
   );
   return (
-    <nav className="nav-wrapper grey darken-3">
+    <nav className="nav-wrapper theme-back-white">
       <div className="container">
-        <Link to="/" className="brand-logo">
+        <Link to="/" className="brand-logo blue-grey-text text-darken-4">
           WaonKobo
         </Link>
         {links}

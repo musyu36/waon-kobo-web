@@ -26,7 +26,7 @@ class CreateProject extends Component {
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Create new project</h5>
+          <h5 className="blue-grey-text text-darken-4">Create new project</h5>
           <div className="input-field">
             <label htmlFor="title">Title</label>
             <input type="text" id="title" onChange={this.handleChange} />
@@ -40,7 +40,7 @@ class CreateProject extends Component {
             ></textarea>
           </div>
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Create</button>
+            <button className="btn theme-back-blue z-depth-0">Create</button>
           </div>
         </form>
       </div>
