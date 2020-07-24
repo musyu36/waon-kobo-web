@@ -14,12 +14,18 @@ import fbConfig from "./config/fbConfig";
 // thunkをmiddlewareに使用
 // storeに複数のストアエンハンサーを設定するためcomposeを使ってまとめる
 // attachAuthIsReadyをtrueでfirebase初期化後にレンダリングする(リロード時に一瞬SignedOutLinksが表示されるのを回避)
+// useFirestoreForProfileでfirebaseReducerにfirestoreデータベースとprofileオブジェクトを同期
+// その中でもuseProfileで、どのコレクションと同期するのか指定
 const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
     reduxFirestore(fbConfig),
-    reactReduxFirebase(fbConfig, { attachAuthIsReady: true })
+    reactReduxFirebase(fbConfig, {
+      useFirestoreForProfile: true,
+      userProfile: "users",
+      attachAuthIsReady: true,
+    })
   )
 );
 
