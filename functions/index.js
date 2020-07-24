@@ -29,3 +29,23 @@ exports.projectCreated = functions.firestore
     //   Cloud Functions用の関数は何かしらのレスポンスが必要なのでreturnする形で関数を呼び出す
     return createNotification(notification);
   });
+
+//   新しいユーザーが作成されたときがトリガー
+exports.userJoined = functions.auth.user().onCreate((user) => {
+  // .doc(user.uid).get()で作られたユーザー情報をusersコレクションからとって、notificationオブジェクトを作成し、createNotificationに渡す
+  return admin
+    .firestore()
+    .collection("users")
+    .doc(user.uid)
+    .get()
+    .then((doc) => {
+      const newUser = doc.data();
+      const notification = {
+        content: "Joined the party",
+        user: `${newUser.firstName} ${newUser.lastName}`,
+        time: admin.firestore.FieldValue.serverTimestamp(),
+      };
+
+      return createNotification(notification);
+    });
+});
