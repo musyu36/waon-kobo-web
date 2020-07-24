@@ -4,11 +4,10 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0rem;
+  font-family: sans-serif;
+  background-color: #e0effd;
+  min-height: 100%;
 }
 
 code {
@@ -30,6 +29,56 @@ input[type="text"]:not(.browser-default):focus:not([readonly]),
 input[type="email"]:not(.browser-default):focus:not([readonly]),
 input[type="password"]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
-  border-color: #ec407a;
+  border-color: #1a81e8;
   box-shadow: none;
+}
+
+.btn:hover {
+  background-color: #589def;
+}
+
+.brand-logo {
+  margin-left: 8px;
+}
+
+p {
+  color: #263238;
+}
+
+.theme-back-blue {
+  background-color: #1a81e8;
+}
+
+.theme-color-blue {
+  color: #1a81e8;
+}
+
+.theme-back-white {
+  background-color: #fcfdff;
+}
+
+.fw-450 {
+  font-weight: 450;
+}
+
+.fab-new-project {
+  display: none;
+}
+
+.btn-floating:hover,
+.btn:focus {
+  background-color: #1a81e8;
+}
+
+@media screen and (max-width: 480px) {
+  .nav-new-project {
+    display: none;
+  }
+
+  .fab-new-project {
+    display: block;
+    position: absolute;
+    right: 16px;
+    bottom: 32px;
+  }
 }

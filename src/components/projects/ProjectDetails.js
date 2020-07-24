@@ -12,12 +12,14 @@ const ProjectDetails = (props) => {
   if (project) {
     return (
       <div className="container section project-details">
-        <div className="card z-depth-0">
-          <div className="card-content">
-            <span className="card-title">{project.title}</span>
+        <div className="card z-depth-1">
+          <div className="card-content theme-back-white">
+            <span className="card-title blue-grey-text text-darken-4">
+              {project.title}
+            </span>
             <p>{project.content}</p>
           </div>
-          <div className="card-action gret lighten-4 grey-text">
+          <div className="card-action blue-grey-text text-darken-4">
             <div>
               Posted by {project.authorFirstName} {project.authorLastName}
             </div>
