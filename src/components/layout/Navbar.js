@@ -14,7 +14,7 @@ const Navbar = (props) => {
   return (
     <nav className="nav-wrapper theme-back-white">
       <div className="container">
-        <Link to="/" className="brand-logo blue-grey-text text-darken-4">
+        <Link to="/" className="left brand-logo blue-grey-text text-darken-4">
           WaonKobo
         </Link>
         {links}

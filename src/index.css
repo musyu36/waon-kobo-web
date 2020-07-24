@@ -33,6 +33,14 @@ textarea.materialize-textarea:focus:not([readonly]) {
   box-shadow: none;
 }
 
+.btn:hover {
+  background-color: #589def;
+}
+
+.brand-logo {
+  margin-left: 8px;
+}
+
 p {
   color: #263238;
 }
@@ -51,4 +59,26 @@ p {
 
 .fw-450 {
   font-weight: 450;
+}
+
+.fab-new-project {
+  display: none;
+}
+
+.btn-floating:hover,
+.btn:focus {
+  background-color: #1a81e8;
+}
+
+@media screen and (max-width: 480px) {
+  .nav-new-project {
+    display: none;
+  }
+
+  .fab-new-project {
+    display: block;
+    position: absolute;
+    right: 16px;
+    bottom: 32px;
+  }
 }
