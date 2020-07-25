@@ -1,9 +1,9 @@
+import "../../styles/ButtonSet.css";
 import React, { useContext, useState, useEffect } from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
 import HammerIcon from "./HammerIcon";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
@@ -20,6 +20,10 @@ function getModalStyle() {
     left: `${left}%`,
     transform: `translate(-${top}%, -${left}%)`,
     width: "80%",
+    overflow: "scroll",
+    height: "100%",
+    maxHeight: 500,
+    display: "block",
   };
 }
 
@@ -334,7 +338,7 @@ const ButtonsSet = ({
     <div style={modalStyle} className={classes.paper}>
       <h5 className="modal-title card-title">基音</h5>
       <div className="modal-notes">
-        {notesStrings.map((note, index) => (
+        {/* {notesStrings.map((note, index) => (
           <label key={index} style={{ marginRight: "8px" }}>
             <span className="radio-set">
               <input
@@ -347,11 +351,27 @@ const ButtonsSet = ({
               {note.name}
             </span>
           </label>
-        ))}
+        ))} */}
+        <FormControl component="fieldset">
+          <RadioGroup className="radio-group">
+            {notesStrings.map((note, index) => (
+              <FormControlLabel
+                control={<Radio />}
+                name={note.name}
+                value={note.value}
+                checked={note.checked}
+                onChange={handleRootRadioClick}
+                label={note.name}
+                labelPlacement="top"
+                key={index}
+              />
+            ))}
+          </RadioGroup>
+        </FormControl>
       </div>
       <h5 className="modal-title modal-title-structure">構成</h5>
       <div className="modal-notes">
-        {chordStrings.map((chord, index) => (
+        {/* {chordStrings.map((chord, index) => (
           <label key={index} style={{ marginRight: "8px" }}>
             <span className="radio-set">
               <input
@@ -364,7 +384,23 @@ const ButtonsSet = ({
               {chord.name}
             </span>
           </label>
-        ))}
+        ))} */}
+        <FormControl component="fieldset">
+          <RadioGroup onChange={handleChordRadioClick} className="radio-group">
+            {chordStrings.map((chord, index) => (
+              <FormControlLabel
+                control={<Radio />}
+                name={chord.name}
+                value={chord.value}
+                checked={chord.checked}
+                onChange={handleRootRadioClick}
+                label={chord.name}
+                labelPlacement="top"
+                key={index}
+              />
+            ))}
+          </RadioGroup>
+        </FormControl>
       </div>
       <div className="modal-btn-set">
         <Button

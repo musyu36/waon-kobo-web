@@ -49,6 +49,10 @@ p {
   color: #263238;
 }
 
+.flex {
+  display: flex;
+}
+
 .theme-back-blue {
   background-color: #1a81e8;
 }
