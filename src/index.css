@@ -41,6 +41,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
   margin-left: 8px;
 }
 
+h5 {
+  color: #263238;
+}
+
 p {
   color: #263238;
 }

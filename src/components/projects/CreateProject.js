@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createProject } from "../../store/actions/projectActions";
 import { Redirect } from "react-router-dom";
+import ButtonSet from "./ButtonSet.js";
 
 class CreateProject extends Component {
   state = {
@@ -32,15 +33,19 @@ class CreateProject extends Component {
             <input type="text" id="title" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <label htmlFor="content">Project Content</label>
+            <label htmlFor="content">Memo</label>
             <textarea
               id="content"
               className="materialize-textarea"
               onChange={this.handleChange}
             ></textarea>
           </div>
+
+          <ButtonSet />
           <div className="input-field">
-            <button className="btn theme-back-blue z-depth-0">Create</button>
+            <div type="submit" className="btn theme-back-blue z-depth-0">
+              Create
+            </div>
           </div>
         </form>
       </div>
