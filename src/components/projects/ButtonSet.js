@@ -85,9 +85,11 @@ const styles = (theme) => ({
   checked: {},
 });
 
-const ButtonsSet = ({
+const ButtonSet = ({
   btnNum,
   playingNum,
+  chords,
+  handleChords,
   currentChords,
   setCurrentChords,
   randomChord,
@@ -218,10 +220,12 @@ const ButtonsSet = ({
   const updateChord = () => {
     var rootNum = 0;
     var chordType = "";
+    var rootName = "";
 
     // trueの物を探す
     notesStrings.map((note) => {
       if (note.checked) {
+        rootName = note.name;
         rootNum = note.value;
         return setCurrentNote(note.name);
       }
@@ -234,123 +238,129 @@ const ButtonsSet = ({
         return setCurrentChord(chord.name);
       }
     });
-    const nextChord = [];
+    const nextChordNums = [];
     switch (chordType) {
       case "maj":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 4);
+        nextChordNums.push(rootNum + 7);
         break;
       case "min":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 3);
-        nextChord.push(rootNum + 7);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 3);
+        nextChordNums.push(rootNum + 7);
         break;
       case "7":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 10);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 4);
+        nextChordNums.push(rootNum + 7);
+        nextChordNums.push(rootNum + 10);
         break;
       case "M7":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 11);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 4);
+        nextChordNums.push(rootNum + 7);
+        nextChordNums.push(rootNum + 11);
         break;
       case "m7":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 3);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 10);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 3);
+        nextChordNums.push(rootNum + 7);
+        nextChordNums.push(rootNum + 10);
         break;
       case "mM7":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 3);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 11);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 3);
+        nextChordNums.push(rootNum + 7);
+        nextChordNums.push(rootNum + 11);
         break;
       case "dim":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 3);
-        nextChord.push(rootNum + 6);
-        nextChord.push(rootNum + 9);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 3);
+        nextChordNums.push(rootNum + 6);
+        nextChordNums.push(rootNum + 9);
         break;
       case "sus4":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 5);
-        nextChord.push(rootNum + 7);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 5);
+        nextChordNums.push(rootNum + 7);
         break;
       case "7sus4":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 5);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 10);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 5);
+        nextChordNums.push(rootNum + 7);
+        nextChordNums.push(rootNum + 10);
         break;
       case "aug":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 8);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 4);
+        nextChordNums.push(rootNum + 8);
         break;
       case "m7(♭5)":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 3);
-        nextChord.push(rootNum + 6);
-        nextChord.push(rootNum + 10);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 3);
+        nextChordNums.push(rootNum + 6);
+        nextChordNums.push(rootNum + 10);
         break;
       case "6":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 9);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 4);
+        nextChordNums.push(rootNum + 7);
+        nextChordNums.push(rootNum + 9);
         break;
       case "add9":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 14);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 4);
+        nextChordNums.push(rootNum + 7);
+        nextChordNums.push(rootNum + 14);
         break;
       case "9":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 10);
-        nextChord.push(rootNum + 14);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 4);
+        nextChordNums.push(rootNum + 7);
+        nextChordNums.push(rootNum + 10);
+        nextChordNums.push(rootNum + 14);
         break;
       case "7(♭9)":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 10);
-        nextChord.push(rootNum + 13);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 4);
+        nextChordNums.push(rootNum + 7);
+        nextChordNums.push(rootNum + 10);
+        nextChordNums.push(rootNum + 13);
         break;
       case "7(♯9)":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 7);
-        nextChord.push(rootNum + 10);
-        nextChord.push(rootNum + 15);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 4);
+        nextChordNums.push(rootNum + 7);
+        nextChordNums.push(rootNum + 10);
+        nextChordNums.push(rootNum + 15);
         break;
       case "m(♭5)":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 3);
-        nextChord.push(rootNum + 6);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 3);
+        nextChordNums.push(rootNum + 6);
         break;
       case "(♯5)":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 6);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 4);
+        nextChordNums.push(rootNum + 6);
         break;
       case "M7(♯5)":
-        nextChord.push(rootNum);
-        nextChord.push(rootNum + 4);
-        nextChord.push(rootNum + 6);
-        nextChord.push(rootNum + 11);
+        nextChordNums.push(rootNum);
+        nextChordNums.push(rootNum + 4);
+        nextChordNums.push(rootNum + 6);
+        nextChordNums.push(rootNum + 11);
         break;
       default:
         break;
     }
-    setState(nextChord);
+
+    // CreateProjectコンポーネントのstateを更新
+    handleChords(
+      { rootName: rootName, chordType: chordType, chordNums: nextChordNums },
+      btnNum
+    );
+    setState(nextChordNums);
   };
 
   // コードの選択
@@ -387,13 +397,13 @@ const ButtonsSet = ({
           <RadioGroup className="radio-group">
             {chordStrings.map((chord, index) => (
               <FormControlLabel
-                className={{
+                classes={{
                   root: styles.formControlLabelRoot,
                   label: styles.formControlLabel,
                 }}
                 control={
                   <Radio
-                    className={{
+                    classes={{
                       root: styles.radio,
                       checked: styles.checked,
                     }}
@@ -485,4 +495,4 @@ const ButtonsSet = ({
   );
 };
 
-export default ButtonsSet;
+export default ButtonSet;

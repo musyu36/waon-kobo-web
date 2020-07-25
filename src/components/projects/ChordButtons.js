@@ -29,7 +29,10 @@ const initialRandomChords = [
 
 const scaleStrings = ["major", "minor", "h_minor", "m_minor"];
 
-const ChordButtons = () => {
+const ChordButtons = (props) => {
+  // propsから値取り出し
+  const { chords, handleChords } = props;
+
   // 選択されている4つのコード
   const [currentChords, setCurrentChords] = useState(initialCurrentChords);
 
@@ -803,28 +806,36 @@ const ChordButtons = () => {
     <>
       <div className="chord-buttons">
         <ButtonSet
-          btnNum={1}
+          btnNum={0}
+          chords={chords}
+          handleChords={(nextChords, index) => handleChords(nextChords, index)}
           currentChords={currentChords}
           setCurrentChords={setCurrentChords}
           randomChord={randomChords[0]}
           deleteDisplayScaleAndKey={deleteDisplayScaleAndKey}
         />
         <ButtonSet
-          btnNum={2}
+          btnNum={1}
+          chords={chords}
+          handleChords={(nextChords, index) => handleChords(nextChords, index)}
           currentChords={currentChords}
           setCurrentChords={setCurrentChords}
           randomChord={randomChords[1]}
           deleteDisplayScaleAndKey={deleteDisplayScaleAndKey}
         />
         <ButtonSet
-          btnNum={3}
+          btnNum={2}
+          chords={chords}
+          handleChords={(nextChords, index) => handleChords(nextChords, index)}
           currentChords={currentChords}
           setCurrentChords={setCurrentChords}
           randomChord={randomChords[2]}
           deleteDisplayScaleAndKey={deleteDisplayScaleAndKey}
         />
         <ButtonSet
-          btnNum={4}
+          btnNum={3}
+          chords={chords}
+          handleChords={(nextChords, index) => handleChords(nextChords, index)}
           currentChords={currentChords}
           setCurrentChords={setCurrentChords}
           randomChord={randomChords[3]}

@@ -5,20 +5,41 @@ import { Redirect } from "react-router-dom";
 import ChordButtons from "./ChordButtons";
 
 class CreateProject extends Component {
+  constructor(props) {
+    super(props);
+    this.handleChords = this.handleChords.bind(this);
+  }
   state = {
     title: "",
     content: "",
+    chords: [
+      { rootName: "C", chordType: "maj", chordNums: [0, 4, 7] },
+      { rootName: "C", chordType: "maj", chordNums: [0, 4, 7] },
+      { rootName: "C", chordType: "maj", chordNums: [0, 4, 7] },
+      { rootName: "C", chordType: "maj", chordNums: [0, 4, 7] },
+    ],
   };
+
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value,
     });
   };
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.createProject(this.state);
     this.props.history.push("/");
   };
+
+  handleChords = (nextChords, index) => {
+    var newState = this.state.chords;
+    newState[index] = nextChords;
+    this.setState({
+      chords: newState,
+    });
+  };
+
   render() {
     const { auth } = this.props;
     // ルートガード
@@ -30,7 +51,12 @@ class CreateProject extends Component {
           <h5 className="blue-grey-text text-darken-4">Create new project</h5>
           <div className="input-field">
             <label htmlFor="title">Title</label>
-            <input type="text" id="title" onChange={this.handleChange} />
+            <input
+              required
+              type="text"
+              id="title"
+              onChange={this.handleChange}
+            />
           </div>
           <div className="input-field">
             <label htmlFor="content">Memo</label>
@@ -41,11 +67,16 @@ class CreateProject extends Component {
             ></textarea>
           </div>
 
-          <ChordButtons />
+          <ChordButtons
+            chords={this.state.chords}
+            handleChords={(nextChords, index) =>
+              this.handleChords(nextChords, index)
+            }
+          />
           <div className="input-field">
-            <div type="submit" className="btn theme-back-blue z-depth-0">
+            <button type="submit" className="btn theme-back-blue z-depth-0">
               Create
-            </div>
+            </button>
           </div>
         </form>
       </div>
