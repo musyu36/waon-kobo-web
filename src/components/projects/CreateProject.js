@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createProject } from "../../store/actions/projectActions";
 import { Redirect } from "react-router-dom";
-import ButtonSet from "./ButtonSet.js";
+import ChordButtons from "./ChordButtons";
 
 class CreateProject extends Component {
   state = {
@@ -41,7 +41,7 @@ class CreateProject extends Component {
             ></textarea>
           </div>
 
-          <ButtonSet />
+          <ChordButtons />
           <div className="input-field">
             <div type="submit" className="btn theme-back-blue z-depth-0">
               Create

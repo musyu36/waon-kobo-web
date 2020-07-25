@@ -40,6 +40,20 @@ const useStyles = makeStyles((theme) => ({
   btnChord: {
     marginBottom: 8,
     textTransform: "none",
+    "&:hover": {
+      backgroundColor: "#fcfdff",
+    },
+    "&:focus": {
+      backgroundColor: "#fcfdff",
+    },
+  },
+  btnSelect: {
+    "&:hover": {
+      backgroundColor: "#fcfdff",
+    },
+    "&:focus": {
+      backgroundColor: "#fcfdff",
+    },
   },
   btnCancel: {
     marginRight: 8,
@@ -61,6 +75,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
+const styles = (theme) => ({
+  radio: {
+    "&$checked": {
+      color: "#4B8DF8",
+    },
+  },
+  checked: {},
+});
 
 const ButtonsSet = ({
   btnNum,
@@ -122,9 +145,11 @@ const ButtonsSet = ({
   // モーダル管理
   const [openChordModal, setOpenChordModal] = useState(false);
 
+  // モーダルスタイル
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
 
+  // モーダル開閉
   const handleOpenChordModal = () => {
     setOpenChordModal(true);
   };
@@ -205,6 +230,7 @@ const ButtonsSet = ({
     chordStrings.map((chord) => {
       if (chord.checked) {
         chordType = chord.name;
+        displayChord = chord.name;
         return setCurrentChord(chord.name);
       }
     });
@@ -338,25 +364,11 @@ const ButtonsSet = ({
     <div style={modalStyle} className={classes.paper}>
       <h5 className="modal-title card-title">基音</h5>
       <div className="modal-notes">
-        {/* {notesStrings.map((note, index) => (
-          <label key={index} style={{ marginRight: "8px" }}>
-            <span className="radio-set">
-              <input
-                type="radio"
-                name={note.name}
-                value={note.value}
-                checked={note.checked}
-                onChange={handleRootRadioClick}
-              />
-              {note.name}
-            </span>
-          </label>
-        ))} */}
         <FormControl component="fieldset">
           <RadioGroup className="radio-group">
             {notesStrings.map((note, index) => (
               <FormControlLabel
-                control={<Radio />}
+                control={<Radio style={{ paddingTop: "0px" }} />}
                 name={note.name}
                 value={note.value}
                 checked={note.checked}
@@ -371,29 +383,27 @@ const ButtonsSet = ({
       </div>
       <h5 className="modal-title modal-title-structure">構成</h5>
       <div className="modal-notes">
-        {/* {chordStrings.map((chord, index) => (
-          <label key={index} style={{ marginRight: "8px" }}>
-            <span className="radio-set">
-              <input
-                type="radio"
+        <FormControl component="fieldset">
+          <RadioGroup className="radio-group">
+            {chordStrings.map((chord, index) => (
+              <FormControlLabel
+                className={{
+                  root: styles.formControlLabelRoot,
+                  label: styles.formControlLabel,
+                }}
+                control={
+                  <Radio
+                    className={{
+                      root: styles.radio,
+                      checked: styles.checked,
+                    }}
+                    style={{ paddingTop: "0px" }}
+                  />
+                }
                 name={chord.name}
                 value={chord.value}
                 checked={chord.checked}
                 onChange={handleChordRadioClick}
-              />
-              {chord.name}
-            </span>
-          </label>
-        ))} */}
-        <FormControl component="fieldset">
-          <RadioGroup onChange={handleChordRadioClick} className="radio-group">
-            {chordStrings.map((chord, index) => (
-              <FormControlLabel
-                control={<Radio />}
-                name={chord.name}
-                value={chord.value}
-                checked={chord.checked}
-                onChange={handleRootRadioClick}
                 label={chord.name}
                 labelPlacement="top"
                 key={index}
@@ -457,11 +467,15 @@ const ButtonsSet = ({
 
   return (
     <div className="btn-set">
-      <Button className="btn-play" variant="outlined" onClick={playChord}>
+      <Button
+        className={classes.btnChord}
+        variant="outlined"
+        onClick={playChord}
+      >
         {currentNote}
         {displayChord}
       </Button>
-      <Button className="btn-select" onClick={handleOpenChordModal}>
+      <Button className={classes.btnChord} onClick={handleOpenChordModal}>
         <HammerIcon />
       </Button>
       <Modal open={openChordModal} onClose={handleCloseChordModal}>

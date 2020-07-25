@@ -18,7 +18,7 @@ const SignedInLinks = (props) => {
           className="theme-back-blue fab-new-project btn-floating btn-large"
           to="/create"
         >
-          <i class="material-icons">add</i>
+          <i className="material-icons">add</i>
         </Link>
       </li>
       <li>
