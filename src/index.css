@@ -49,6 +49,20 @@ p {
   color: #263238;
 }
 
+.break-word {
+  word-wrap: break-word;
+}
+
+.overflow-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card-title {
+  word-wrap: break-word;
+}
+
 .flex {
   display: flex;
 }

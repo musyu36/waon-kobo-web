@@ -5,7 +5,9 @@ const ProjectSummary = ({ project }) => {
   return (
     <div className="card z-depth-1 project-summary">
       <div className="card-content blue-grey-text text-darken-4 theme-back-white">
-        <span className="card-title blue-grey-text text-darken-4">{project.title}</span>
+        <span className="card-title blue-grey-text text-darken-4 overflow-ellipsis">
+          {project.title}
+        </span>
         <p>
           Posted by the {project.authorFirstName} {project.authorLastName}
         </p>
