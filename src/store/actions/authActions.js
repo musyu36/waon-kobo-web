@@ -33,6 +33,14 @@ export const signUp = (newUser) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
     const firestore = getFirestore();
+    var initialFirstName = "";
+    var initialLastName = "";
+    if (newUser.firstName !== "") {
+      this.initialFirstName = newUser.firstName[0];
+    }
+    if (newUser.lastName !== "") {
+      this.initialLastName = newUser.lastName[1];
+    }
 
     firebase
       .auth()
@@ -44,7 +52,7 @@ export const signUp = (newUser) => {
           .set({
             firstName: newUser.firstName,
             lastName: newUser.lastName,
-            initials: newUser.firstName[0] + newUser.lastName[0],
+            initials: initialFirstName + initialLastName,
           });
       })
       .then(() => {
