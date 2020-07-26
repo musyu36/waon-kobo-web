@@ -36,6 +36,21 @@ const DisplayChordButtons = (props) => {
       <div className="display-chord-buttons">
         {chords &&
           chords.map((chord, index) => {
+            var displayChordType = "";
+            switch (chord.chordType) {
+              case "maj":
+                displayChordType = "";
+                break;
+              case "min":
+                displayChordType = "m";
+                break;
+              case "7":
+                displayChordType = "7";
+                break;
+              default:
+                displayChordType = chord.chordType;
+                break;
+            }
             return (
               <Button
                 className={classes.btnChord}
@@ -44,7 +59,7 @@ const DisplayChordButtons = (props) => {
                 key={index}
               >
                 {chord.rootName}
-                {chord.chordType}
+                {displayChordType}
               </Button>
             );
           })}
