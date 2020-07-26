@@ -36,10 +36,10 @@ export const signUp = (newUser) => {
     var initialFirstName = "";
     var initialLastName = "";
     if (newUser.firstName !== "") {
-      this.initialFirstName = newUser.firstName[0];
+      initialFirstName = newUser.firstName[0];
     }
     if (newUser.lastName !== "") {
-      this.initialLastName = newUser.lastName[1];
+      initialLastName = newUser.lastName[0];
     }
 
     firebase

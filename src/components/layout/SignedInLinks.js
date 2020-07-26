@@ -5,8 +5,6 @@ import { signOut } from "../../store/actions/authActions";
 import { Link } from "react-router-dom";
 
 const SignedInLinks = (props) => {
-  console.log("### props.initials: ", props.initials);
-  const displayInitial = props.initials === undefined ? "" : props.initials;
   return (
     <ul className="right">
       <li>
@@ -30,8 +28,7 @@ const SignedInLinks = (props) => {
       </li>
       <li>
         <NavLink to="/" className="btn theme-back-blue btn-floating">
-          {/* {props.profile.initials} */}
-          {displayInitial}
+          {props.profile.initials}
         </NavLink>
       </li>
     </ul>
