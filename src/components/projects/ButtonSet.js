@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     width: "auto",
     backgroundColor: "#e6f0fa",
-    borderTop: "2px solid #16acde",
     boxShadow: theme.shadows[1],
     padding: theme.spacing(2, 4, 3),
     outline: "none",
@@ -57,21 +56,21 @@ const useStyles = makeStyles((theme) => ({
   },
   btnCancel: {
     marginRight: 8,
-    color: "#16acde",
-    border: "1px solid #16acde",
+    color: "#1a81e8",
+    border: "1px solid #1a81e8",
     "&:hover": {
-      color: "#1184ab",
-      border: "1px solid #1184ab",
+      color: "#589def",
+      border: "1px solid #589def",
     },
   },
   btnOk: {
-    backgroundColor: "#16acde",
+    backgroundColor: "#1a81e8",
     color: "#e6f0fa",
-    border: "1px solid #16acde",
+    border: "1px solid #1a81e8",
     "&:hover": {
-      backgroundColor: "#1184ab",
+      backgroundColor: "#589def",
       color: "e6f0fa",
-      border: "1px solid #1184ab",
+      border: "1px solid #589def",
     },
   },
 }));
@@ -341,7 +340,7 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums }) => {
 
   const bodyChord = (
     <div style={modalStyle} className={classes.paper}>
-      <h5 className="modal-title card-title">基音</h5>
+      <h5 className="modal-title card-title">Root</h5>
       <div className="modal-notes">
         <FormControl component="fieldset">
           <RadioGroup className="radio-group">
@@ -360,7 +359,7 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums }) => {
           </RadioGroup>
         </FormControl>
       </div>
-      <h5 className="modal-title modal-title-structure">構成</h5>
+      <h5 className="modal-title modal-title-structure">Chord Type</h5>
       <div className="modal-notes">
         <FormControl component="fieldset">
           <RadioGroup className="radio-group">
@@ -397,14 +396,14 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums }) => {
           className={classes.btnCancel}
           variant="outlined"
         >
-          キャンセル
+          Cancel
         </Button>
         <Button
           onClick={selectChord}
           className={classes.btnOk}
           variant="contained"
         >
-          決定
+          OK
         </Button>
       </div>
     </div>
