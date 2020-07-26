@@ -72,6 +72,7 @@ class CreateProject extends Component {
             handleChords={(nextChords, index) =>
               this.handleChords(nextChords, index)
             }
+            setChordNums={this.setChordNums}
           />
           <div className="input-field">
             <button type="submit" className="btn theme-back-blue z-depth-0">

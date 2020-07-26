@@ -94,6 +94,7 @@ const ButtonSet = ({
   setCurrentChords,
   randomChord,
   deleteDisplayScaleAndKey,
+  setChordNums,
 }) => {
   const initialState = [0, 4, 7];
 
@@ -211,6 +212,7 @@ const ButtonSet = ({
 
   // 再生
   const playChord = () => {
+    setChordNums(state);
     state.map((value) => {
       notes[value].currentTime = 0;
       notes[value].play();

@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Redirect } from "react-router-dom";
 import DisplayChordButtons from "./DisplayChordButtons";
+import KeyBoard from "./KeyBoard";
 import moment from "moment";
 
 const ProjectDetails = (props) => {
   const { project, auth } = props;
+  const [chordNums, setChordNums] = useState([]);
+
   // ルートガード
   if (!auth.uid) return <Redirect to="/signin" />;
   if (project) {
@@ -19,7 +22,11 @@ const ProjectDetails = (props) => {
               {project.title}
             </span>
             <p className="break-word">{project.content}</p>
-            <DisplayChordButtons chords={project.chords} />
+            <DisplayChordButtons
+              chords={project.chords}
+              setChordNums={setChordNums}
+            />
+            <KeyBoard chords={chordNums} />
           </div>
           <div className="card-action blue-grey-text text-darken-4">
             <div>

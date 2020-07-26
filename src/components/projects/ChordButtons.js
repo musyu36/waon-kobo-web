@@ -3,6 +3,7 @@ import "../../styles/ChordButtons.css";
 import ButtonSet from "./ButtonSet.js";
 import notes from "../notes/Notes.js";
 import diatonicChords from "./DiatonicChords.js";
+import KeyBoard from "./KeyBoard.js";
 
 var id = null;
 var currentChordsDic = {
@@ -37,6 +38,8 @@ const ChordButtons = (props) => {
   const [currentChords, setCurrentChords] = useState(initialCurrentChords);
 
   const [randomChords, setRandomChords] = useState(initialRandomChords);
+
+  const [chordNums, setChordNums] = useState([]);
 
   // 表示用state
   const [displayScale, setDisplayScale] = useState("");
@@ -813,6 +816,7 @@ const ChordButtons = (props) => {
           setCurrentChords={setCurrentChords}
           randomChord={randomChords[0]}
           deleteDisplayScaleAndKey={deleteDisplayScaleAndKey}
+          setChordNums={setChordNums}
         />
         <ButtonSet
           btnNum={1}
@@ -822,6 +826,7 @@ const ChordButtons = (props) => {
           setCurrentChords={setCurrentChords}
           randomChord={randomChords[1]}
           deleteDisplayScaleAndKey={deleteDisplayScaleAndKey}
+          setChordNums={setChordNums}
         />
         <ButtonSet
           btnNum={2}
@@ -831,6 +836,7 @@ const ChordButtons = (props) => {
           setCurrentChords={setCurrentChords}
           randomChord={randomChords[2]}
           deleteDisplayScaleAndKey={deleteDisplayScaleAndKey}
+          setChordNums={setChordNums}
         />
         <ButtonSet
           btnNum={3}
@@ -840,8 +846,10 @@ const ChordButtons = (props) => {
           setCurrentChords={setCurrentChords}
           randomChord={randomChords[3]}
           deleteDisplayScaleAndKey={deleteDisplayScaleAndKey}
+          setChordNums={setChordNums}
         />
       </div>
+      <KeyBoard chords={chordNums} />
     </>
   );
 };

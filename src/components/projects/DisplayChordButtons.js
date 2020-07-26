@@ -32,7 +32,7 @@ const scaleStrings = ["major", "minor", "h_minor", "m_minor"];
 
 const DisplayChordButtons = (props) => {
   // propsから値取り出し
-  const { chords } = props;
+  const { chords, setChordNums } = props;
 
   // 選択されている4つのコード
   const [currentChords, setCurrentChords] = useState(initialCurrentChords);
@@ -90,6 +90,7 @@ const DisplayChordButtons = (props) => {
   };
 
   const playChord = (nums) => {
+    setChordNums(nums);
     nums.map((value) => {
       notes[value].currentTime = 0;
       notes[value].play();
