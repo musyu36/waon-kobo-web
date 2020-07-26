@@ -1,5 +1,5 @@
 import "../../styles/ButtonSet.css";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState } from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -85,17 +85,7 @@ const styles = (theme) => ({
   checked: {},
 });
 
-const ButtonSet = ({
-  btnNum,
-  playingNum,
-  chords,
-  handleChords,
-  currentChords,
-  setCurrentChords,
-  randomChord,
-  deleteDisplayScaleAndKey,
-  setChordNums,
-}) => {
+const ButtonSet = ({ btnNum, handleChords, setChordNums }) => {
   const initialState = [0, 4, 7];
 
   const [state, setState] = useState(initialState);
@@ -159,29 +149,6 @@ const ButtonSet = ({
 
   const handleCloseChordModal = () => {
     setOpenChordModal(false);
-  };
-
-  // コードシャッフル
-  const shuffleRootRadio = (randomChordRootNum) => {
-    const value = notesStrings.map((item) => {
-      return {
-        name: item.name,
-        value: item.value,
-        checked: item.value === randomChordRootNum ? true : false,
-      };
-    });
-    setNotesStrings(value);
-  };
-
-  const shuffleChordRadio = (randomChordName) => {
-    const value = chordStrings.map((item) => {
-      return {
-        name: item.name,
-        value: item.value,
-        checked: item.name === randomChordName ? true : false,
-      };
-    });
-    setChordStrings(value);
   };
 
   // コード選択
@@ -458,23 +425,6 @@ const ButtonSet = ({
     default:
       displayChord = currentChord;
       break;
-  }
-
-  var playButton = null;
-  if (btnNum === playingNum) {
-    playButton = (
-      <Button className="btn-play-pushed" variant="outlined">
-        {currentNote}
-        {displayChord}
-      </Button>
-    );
-  } else {
-    playButton = (
-      <Button className="btn-play" variant="outlined" onClick={playChord}>
-        {currentNote}
-        {displayChord}
-      </Button>
-    );
   }
 
   return (
