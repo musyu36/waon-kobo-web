@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
   btnCancel: {
     marginRight: 8,
     color: "#1a81e8",
+    textTransform: "none",
     border: "1px solid #1a81e8",
     "&:hover": {
       color: "#589def",
