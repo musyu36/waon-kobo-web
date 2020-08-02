@@ -1,0 +1,16 @@
+.fab-new-project {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .nav-new-project {
+    display: none;
+  }
+
+  .fab-new-project {
+    display: block;
+    position: fixed;
+    right: 16px;
+    bottom: 32px;
+  }
+}
