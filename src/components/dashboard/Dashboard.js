@@ -4,7 +4,9 @@ import ProjectList from "../projects/ProjectList";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
+import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import "../../styles/Dashboard.css";
 
 class Dashboard extends Component {
   render() {
@@ -22,6 +24,12 @@ class Dashboard extends Component {
             <Notification notifications={notifications} />
           </div>
         </div>
+        <Link
+          className="theme-back-blue fab-new-project btn-floating btn-large"
+          to="/create"
+        >
+          <i className="material-icons">add</i>
+        </Link>
       </div>
     );
   }
