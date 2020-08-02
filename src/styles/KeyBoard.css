@@ -1,0 +1,74 @@
+.keyboard {
+  display: flex;
+  width: 100%;
+  height: 115px;
+  justify-content: center;
+}
+
+.keyboard-shadow {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  box-shadow: 5px 5px 10px #c4ccd5, -5px -5px 10px #ffffff;
+}
+
+.key {
+  position: relative;
+  width: 30px;
+  height: 115px;
+}
+
+/*BEGIN black_key*/
+.black_key {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 17.5px;
+  left: 70%;
+  border-radius: 0 0 10px 10px;
+  background-color: #1f1308;
+  width: 70%;
+  height: 62.5px;
+  z-index: 100;
+}
+/*END black_key*/
+
+/*BEGIN white_key*/
+.white_key {
+  display: block;
+  position: absolute;
+  top: 0px;
+  background-color: #f0f8ff;
+  border: 1px solid #c4ccd5;
+  border-top: none;
+  border-bottom: none;
+  width: 100%;
+  height: 115px;
+}
+
+.first-key {
+  display: block;
+  position: absolute;
+  top: 0px;
+  background-color: #e6f0fa;
+  border-top: none;
+  border-left: none;
+  width: 100%;
+  height: 115px;
+}
+
+.last-key {
+  display: block;
+  position: absolute;
+  top: 0px;
+  background-color: #e6f0fa;
+  border-top: none;
+  border-right: none;
+  width: 100%;
+  height: 115px;
+}
+/*END white_key*/
+
+.active_key {
+  background: #67a7f1;
+}
