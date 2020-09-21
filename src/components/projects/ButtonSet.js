@@ -1,5 +1,5 @@
 import "../../styles/ButtonSet.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -85,7 +85,7 @@ const styles = (theme) => ({
   checked: {},
 });
 
-const ButtonSet = ({ btnNum, handleChords, setChordNums }) => {
+const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
   const initialState = [0, 4, 7];
 
   const [state, setState] = useState(initialState);
@@ -337,6 +337,44 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums }) => {
     e.preventDefault();
     updateChord();
     handleCloseChordModal();
+  };
+
+  // propsで渡されたrandomChordを使ってここのボタン情報を更新する
+  useEffect(() => {
+    shuffleRootRadio(randomChord[0]);
+    shuffleChordRadio(randomChord[1]);
+  }, [randomChord]);
+
+  // コードシャッフル
+  const shuffleRootRadio = (randomChordRootNum) => {
+    const value = notesStrings.map((item) => {
+      return {
+        name: item.name,
+        value: item.value,
+        checked: item.value === randomChordRootNum ? true : false,
+      };
+    });
+    setNotesStrings(value);
+  };
+
+  const shuffleChordRadio = (randomChordName) => {
+    const value = chordStrings.map((item) => {
+      return {
+        name: item.name,
+        value: item.value,
+        checked: item.name === randomChordName ? true : false,
+      };
+    });
+    setChordStrings(value);
+  };
+
+  useEffect(() => {
+    shuffleChord(randomChord);
+  }, [notesStrings, chordStrings]);
+
+  // コードのランダム選択
+  const shuffleChord = () => {
+    updateChord();
   };
 
   const bodyChord = (
