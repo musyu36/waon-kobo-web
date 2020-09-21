@@ -1,8 +1,6 @@
 .chord-buttons {
   display: flex;
-  margin: 64px;
   height: 130px;
-  margin-bottom: 24px;
   align-items: center;
   justify-content: space-around;
 }

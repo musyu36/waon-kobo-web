@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../styles/ChordButtons.css";
 import ButtonSet from "./ButtonSet.js";
 import KeyBoard from "./KeyBoard.js";
+import ShuffleButton from "./ShuffleButton.js";
 
 const ChordButtons = (props) => {
   // propsから値取り出し
@@ -11,6 +12,7 @@ const ChordButtons = (props) => {
 
   return (
     <>
+      <ShuffleButton />
       <div className="chord-buttons">
         <ButtonSet
           btnNum={0}
