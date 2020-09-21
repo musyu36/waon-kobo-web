@@ -2,6 +2,8 @@
 WaonKoboは作曲支援することを目的とした掲示板サービスです。
 https://waon-kobo-web.web.app/
 
+![waon-kobo-web](https://user-images.githubusercontent.com/51291244/93775291-320b9780-fc5d-11ea-8f6a-48901ffbac4d.gif)
+
 ## 背景
 メロディラインやリズムはなんとなく思い浮かんでも、コード進行は知識や経験がないと中々生み出すのは難しい。
 そんな多くの作曲初心者が抱える悩みを解決するためにこのサービスを作りましtた。
