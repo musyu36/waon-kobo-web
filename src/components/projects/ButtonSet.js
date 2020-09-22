@@ -143,7 +143,7 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
   const [modalStyle] = useState(getModalStyle);
 
   // モーダル開閉
-  const handleModal = (state, e) => {
+  const handleModal = (state) => {
     setModalIsOpen(state);
   };
 
