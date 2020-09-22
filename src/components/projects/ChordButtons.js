@@ -24,7 +24,6 @@ const ChordButtons = (props) => {
 
   //コードシャッフル
   const shuffleChords = () => {
-    console.log("### shuffleChords");
     const randomScaleNum = Math.floor(Math.random() * 4);
     const randomRootNum = Math.floor(Math.random() * 12);
     const randomDiatonic = [
@@ -687,30 +686,43 @@ const ChordButtons = (props) => {
     <>
       <ShuffleButton shuffleChords={shuffleChords} />
       <div className="chord-buttons">
-        <ButtonSet
-          btnNum={0}
-          handleChords={(nextChords, index) => handleChords(nextChords, index)}
-          setChordNums={setChordNums}
-          randomChord={randomChords[0]}
-        />
-        <ButtonSet
-          btnNum={1}
-          handleChords={(nextChords, index) => handleChords(nextChords, index)}
-          setChordNums={setChordNums}
-          randomChord={randomChords[1]}
-        />
-        <ButtonSet
-          btnNum={2}
-          handleChords={(nextChords, index) => handleChords(nextChords, index)}
-          setChordNums={setChordNums}
-          randomChord={randomChords[2]}
-        />
-        <ButtonSet
-          btnNum={3}
-          handleChords={(nextChords, index) => handleChords(nextChords, index)}
-          setChordNums={setChordNums}
-          randomChord={randomChords[3]}
-        />
+        <div class="btn-pare">
+          <ButtonSet
+            btnNum={0}
+            handleChords={(nextChords, index) =>
+              handleChords(nextChords, index)
+            }
+            setChordNums={setChordNums}
+            randomChord={randomChords[0]}
+          />
+          <ButtonSet
+            btnNum={1}
+            handleChords={(nextChords, index) =>
+              handleChords(nextChords, index)
+            }
+            setChordNums={setChordNums}
+            randomChord={randomChords[1]}
+          />
+        </div>
+
+        <div class="btn-pare">
+          <ButtonSet
+            btnNum={2}
+            handleChords={(nextChords, index) =>
+              handleChords(nextChords, index)
+            }
+            setChordNums={setChordNums}
+            randomChord={randomChords[2]}
+          />
+          <ButtonSet
+            btnNum={3}
+            handleChords={(nextChords, index) =>
+              handleChords(nextChords, index)
+            }
+            setChordNums={setChordNums}
+            randomChord={randomChords[3]}
+          />
+        </div>
       </div>
       <KeyBoard chords={chordNums} />
     </>

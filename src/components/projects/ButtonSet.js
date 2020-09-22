@@ -8,6 +8,7 @@ import HammerIcon from "./HammerIcon";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import { createNextChord } from "./ChordModel.js";
 
 import notes from "../notes/Notes.js";
 
@@ -74,16 +75,13 @@ const useStyles = makeStyles((theme) => ({
       border: "1px solid #589def",
     },
   },
-}));
-
-const styles = (theme) => ({
   radio: {
     "&$checked": {
-      color: "#4B8DF8",
+      color: "#1a81e8",
     },
   },
   checked: {},
-});
+}));
 
 const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
   const initialState = [0, 4, 7];
@@ -136,19 +134,15 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
   const [currentChord, setCurrentChord] = useState("maj");
 
   // モーダル管理
-  const [openChordModal, setOpenChordModal] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   // モーダルスタイル
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
 
   // モーダル開閉
-  const handleOpenChordModal = () => {
-    setOpenChordModal(true);
-  };
-
-  const handleCloseChordModal = () => {
-    setOpenChordModal(false);
+  const handleModal = (state) => {
+    setModalIsOpen(state);
   };
 
   // コード選択
@@ -186,6 +180,7 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
     });
   };
 
+  // noteStrings, chordStringsを元にstate更新
   const updateChord = () => {
     var rootNum = 0;
     var chordType = "";
@@ -207,122 +202,8 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
         return setCurrentChord(chord.name);
       }
     });
-    const nextChordNums = [];
-    switch (chordType) {
-      case "maj":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 4);
-        nextChordNums.push(rootNum + 7);
-        break;
-      case "min":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 3);
-        nextChordNums.push(rootNum + 7);
-        break;
-      case "7":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 4);
-        nextChordNums.push(rootNum + 7);
-        nextChordNums.push(rootNum + 10);
-        break;
-      case "M7":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 4);
-        nextChordNums.push(rootNum + 7);
-        nextChordNums.push(rootNum + 11);
-        break;
-      case "m7":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 3);
-        nextChordNums.push(rootNum + 7);
-        nextChordNums.push(rootNum + 10);
-        break;
-      case "mM7":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 3);
-        nextChordNums.push(rootNum + 7);
-        nextChordNums.push(rootNum + 11);
-        break;
-      case "dim":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 3);
-        nextChordNums.push(rootNum + 6);
-        nextChordNums.push(rootNum + 9);
-        break;
-      case "sus4":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 5);
-        nextChordNums.push(rootNum + 7);
-        break;
-      case "7sus4":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 5);
-        nextChordNums.push(rootNum + 7);
-        nextChordNums.push(rootNum + 10);
-        break;
-      case "aug":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 4);
-        nextChordNums.push(rootNum + 8);
-        break;
-      case "m7(♭5)":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 3);
-        nextChordNums.push(rootNum + 6);
-        nextChordNums.push(rootNum + 10);
-        break;
-      case "6":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 4);
-        nextChordNums.push(rootNum + 7);
-        nextChordNums.push(rootNum + 9);
-        break;
-      case "add9":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 4);
-        nextChordNums.push(rootNum + 7);
-        nextChordNums.push(rootNum + 14);
-        break;
-      case "9":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 4);
-        nextChordNums.push(rootNum + 7);
-        nextChordNums.push(rootNum + 10);
-        nextChordNums.push(rootNum + 14);
-        break;
-      case "7(♭9)":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 4);
-        nextChordNums.push(rootNum + 7);
-        nextChordNums.push(rootNum + 10);
-        nextChordNums.push(rootNum + 13);
-        break;
-      case "7(♯9)":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 4);
-        nextChordNums.push(rootNum + 7);
-        nextChordNums.push(rootNum + 10);
-        nextChordNums.push(rootNum + 15);
-        break;
-      case "m(♭5)":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 3);
-        nextChordNums.push(rootNum + 6);
-        break;
-      case "(♯5)":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 4);
-        nextChordNums.push(rootNum + 6);
-        break;
-      case "M7(♯5)":
-        nextChordNums.push(rootNum);
-        nextChordNums.push(rootNum + 4);
-        nextChordNums.push(rootNum + 6);
-        nextChordNums.push(rootNum + 11);
-        break;
-      default:
-        break;
-    }
+
+    const nextChordNums = createNextChord(rootNum, chordType);
 
     // CreateProjectコンポーネントのstateを更新
     handleChords(
@@ -336,13 +217,29 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
   const selectChord = (e) => {
     e.preventDefault();
     updateChord();
-    handleCloseChordModal();
+    setModalIsOpen(false);
   };
 
   // propsで渡されたrandomChordを使ってここのボタン情報を更新する
   useEffect(() => {
-    shuffleRootRadio(randomChord[0]);
-    shuffleChordRadio(randomChord[1]);
+    const rootNum = randomChord[0];
+    const chordType = randomChord[1];
+    const rootName = notesStrings.find((v) => v.value === rootNum).name;
+
+    shuffleRootRadio(rootNum);
+    shuffleChordRadio(chordType);
+
+    setCurrentNote(rootName);
+    setCurrentChord(chordType);
+
+    const nextChordNums = createNextChord(rootNum, chordType);
+
+    // CreateProjectコンポーネントのstateを更新
+    handleChords(
+      { rootName: rootName, chordType: chordType, chordNums: nextChordNums },
+      btnNum
+    );
+    setState(nextChordNums);
   }, [randomChord]);
 
   // コードシャッフル
@@ -368,15 +265,6 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
     setChordStrings(value);
   };
 
-  useEffect(() => {
-    shuffleChord(randomChord);
-  }, [notesStrings, chordStrings]);
-
-  // コードのランダム選択
-  const shuffleChord = () => {
-    updateChord();
-  };
-
   const bodyChord = (
     <div style={modalStyle} className={classes.paper}>
       <h5 className="modal-title card-title">Root</h5>
@@ -385,7 +273,13 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
           <RadioGroup className="radio-group">
             {notesStrings.map((note, index) => (
               <FormControlLabel
-                control={<Radio style={{ paddingTop: "0px" }} />}
+                control={
+                  <Radio
+                    disableRipple
+                    classes={{ root: classes.radio, checked: classes.checked }}
+                    style={{ paddingTop: "0px" }}
+                  />
+                }
                 name={note.name}
                 value={note.value}
                 checked={note.checked}
@@ -404,16 +298,10 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
           <RadioGroup className="radio-group">
             {chordStrings.map((chord, index) => (
               <FormControlLabel
-                classes={{
-                  root: styles.formControlLabelRoot,
-                  label: styles.formControlLabel,
-                }}
                 control={
                   <Radio
-                    classes={{
-                      root: styles.radio,
-                      checked: styles.checked,
-                    }}
+                    disableRipple
+                    classes={{ root: classes.radio, checked: classes.checked }}
                     style={{ paddingTop: "0px" }}
                   />
                 }
@@ -431,7 +319,7 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
       </div>
       <div className="modal-btn-set">
         <Button
-          onClick={handleCloseChordModal}
+          onClick={handleModal.bind(this, false)}
           className={classes.btnCancel}
           variant="outlined"
         >
@@ -475,10 +363,13 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
         {currentNote}
         {displayChord}
       </Button>
-      <Button className={classes.btnChord} onClick={handleOpenChordModal}>
+      <Button
+        className={classes.btnChord}
+        onClick={handleModal.bind(this, true)}
+      >
         <HammerIcon />
       </Button>
-      <Modal open={openChordModal} onClose={handleCloseChordModal}>
+      <Modal open={modalIsOpen} onClose={handleModal.bind(this, true)}>
         {bodyChord}
       </Modal>
     </div>
