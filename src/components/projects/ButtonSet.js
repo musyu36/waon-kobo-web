@@ -143,8 +143,12 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
   const [modalStyle] = useState(getModalStyle);
 
   // モーダル開閉
-  const handleChordModal = (state) => {
-    setOpenChordModal(state);
+  const handleOpenChordModal = () => {
+    setOpenChordModal(true);
+  };
+
+  const handleCloseChordModal = () => {
+    setOpenChordModal(false);
   };
 
   // コード選択
@@ -332,7 +336,7 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
   const selectChord = (e) => {
     e.preventDefault();
     updateChord();
-    handleChordModal(false);
+    handleCloseChordModal();
   };
 
   // propsで渡されたrandomChordを使ってここのボタン情報を更新する
@@ -427,7 +431,7 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
       </div>
       <div className="modal-btn-set">
         <Button
-          onClick={this.handleChordModal.bind(this, false)}
+          onClick={handleCloseChordModal}
           className={classes.btnCancel}
           variant="outlined"
         >
@@ -471,16 +475,10 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
         {currentNote}
         {displayChord}
       </Button>
-      <Button
-        className={classes.btnChord}
-        onClick={this.handleChordModal.bind(this, true)}
-      >
+      <Button className={classes.btnChord} onClick={handleOpenChordModal}>
         <HammerIcon />
       </Button>
-      <Modal
-        open={openChordModal}
-        onClose={this.handleCloseChordModal.bind(this, false)}
-      >
+      <Modal open={openChordModal} onClose={handleCloseChordModal}>
         {bodyChord}
       </Modal>
     </div>
