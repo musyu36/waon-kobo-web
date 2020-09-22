@@ -24,7 +24,6 @@ const ChordButtons = (props) => {
 
   //コードシャッフル
   const shuffleChords = () => {
-    console.log("### shuffleChords");
     const randomScaleNum = Math.floor(Math.random() * 4);
     const randomRootNum = Math.floor(Math.random() * 12);
     const randomDiatonic = [
