@@ -1,13 +1,12 @@
 import React from "react";
-// import "../../styles/ShuffleButton.css";
 import ShuffleIcon from "./ShuffleIcon";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  btnChord: {
+  btnShuffle: {
     display: "block",
-    margin: "0 auto",
+    margin: "0 auto 16px",
     textTransform: "none",
     lineHeight: "normal",
     "&:hover": {
@@ -24,7 +23,7 @@ const ShuffleButton = ({ shuffleChords }) => {
   return (
     <>
       <Button
-        className={classes.btnChord}
+        className={classes.btnShuffle}
         variant="outlined"
         type="button"
         onClick={shuffleChords}

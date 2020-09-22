@@ -1,8 +1,12 @@
 .chord-buttons {
   display: flex;
-  height: 130px;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-pare {
+  display: flex;
 }
 
 .key-board {
