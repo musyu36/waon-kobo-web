@@ -204,114 +204,96 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
       }
     });
     const nextChordNums = [];
+    nextChordNums.push(rootNum);
     switch (chordType) {
       case "maj":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 4);
         nextChordNums.push(rootNum + 7);
         break;
       case "min":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 3);
         nextChordNums.push(rootNum + 7);
         break;
       case "7":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 4);
         nextChordNums.push(rootNum + 7);
         nextChordNums.push(rootNum + 10);
         break;
       case "M7":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 4);
         nextChordNums.push(rootNum + 7);
         nextChordNums.push(rootNum + 11);
         break;
       case "m7":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 3);
         nextChordNums.push(rootNum + 7);
         nextChordNums.push(rootNum + 10);
         break;
       case "mM7":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 3);
         nextChordNums.push(rootNum + 7);
         nextChordNums.push(rootNum + 11);
         break;
       case "dim":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 3);
         nextChordNums.push(rootNum + 6);
         nextChordNums.push(rootNum + 9);
         break;
       case "sus4":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 5);
         nextChordNums.push(rootNum + 7);
         break;
       case "7sus4":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 5);
         nextChordNums.push(rootNum + 7);
         nextChordNums.push(rootNum + 10);
         break;
       case "aug":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 4);
         nextChordNums.push(rootNum + 8);
         break;
       case "m7(♭5)":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 3);
         nextChordNums.push(rootNum + 6);
         nextChordNums.push(rootNum + 10);
         break;
       case "6":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 4);
         nextChordNums.push(rootNum + 7);
         nextChordNums.push(rootNum + 9);
         break;
       case "add9":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 4);
         nextChordNums.push(rootNum + 7);
         nextChordNums.push(rootNum + 14);
         break;
       case "9":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 4);
         nextChordNums.push(rootNum + 7);
         nextChordNums.push(rootNum + 10);
         nextChordNums.push(rootNum + 14);
         break;
       case "7(♭9)":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 4);
         nextChordNums.push(rootNum + 7);
         nextChordNums.push(rootNum + 10);
         nextChordNums.push(rootNum + 13);
         break;
       case "7(♯9)":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 4);
         nextChordNums.push(rootNum + 7);
         nextChordNums.push(rootNum + 10);
         nextChordNums.push(rootNum + 15);
         break;
       case "m(♭5)":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 3);
         nextChordNums.push(rootNum + 6);
         break;
       case "(♯5)":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 4);
         nextChordNums.push(rootNum + 6);
         break;
       case "M7(♯5)":
-        nextChordNums.push(rootNum);
         nextChordNums.push(rootNum + 4);
         nextChordNums.push(rootNum + 6);
         nextChordNums.push(rootNum + 11);
