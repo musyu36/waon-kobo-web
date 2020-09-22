@@ -347,13 +347,8 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
   };
 
   useEffect(() => {
-    shuffleChord(randomChord);
-  }, [notesStrings, chordStrings]);
-
-  // コードのランダム選択
-  const shuffleChord = () => {
     updateChord();
-  };
+  }, [notesStrings, chordStrings]);
 
   const bodyChord = (
     <div style={modalStyle} className={classes.paper}>
