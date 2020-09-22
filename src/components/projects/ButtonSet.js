@@ -1,5 +1,6 @@
 import "../../styles/ButtonSet.css";
 import React, { useState, useEffect } from "react";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -74,16 +75,13 @@ const useStyles = makeStyles((theme) => ({
       border: "1px solid #589def",
     },
   },
-}));
-
-const styles = (theme) => ({
   radio: {
     "&$checked": {
-      color: "#4B8DF8",
+      color: "#1a81e8",
     },
   },
   checked: {},
-});
+}));
 
 const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
   const initialState = [0, 4, 7];
@@ -182,6 +180,7 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
     });
   };
 
+  // noteStrings, chordStringsを元にstate更新
   const updateChord = () => {
     var rootNum = 0;
     var chordType = "";
@@ -358,7 +357,13 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
           <RadioGroup className="radio-group">
             {notesStrings.map((note, index) => (
               <FormControlLabel
-                control={<Radio style={{ paddingTop: "0px" }} />}
+                control={
+                  <Radio
+                    disableRipple
+                    classes={{ root: classes.radio, checked: classes.checked }}
+                    style={{ paddingTop: "0px" }}
+                  />
+                }
                 name={note.name}
                 value={note.value}
                 checked={note.checked}
@@ -377,16 +382,10 @@ const ButtonSet = ({ btnNum, handleChords, setChordNums, randomChord }) => {
           <RadioGroup className="radio-group">
             {chordStrings.map((chord, index) => (
               <FormControlLabel
-                classes={{
-                  root: styles.formControlLabelRoot,
-                  label: styles.formControlLabel,
-                }}
                 control={
                   <Radio
-                    classes={{
-                      root: styles.radio,
-                      checked: styles.checked,
-                    }}
+                    disableRipple
+                    classes={{ root: classes.radio, checked: classes.checked }}
                     style={{ paddingTop: "0px" }}
                   />
                 }
